@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Assets\100_Script\20_UI\TextView.cs" />
     <Compile Include="Assets\100_Script\20_UI\DeckController.cs" />
+    <Compile Include="Assets\100_Script\20_UI\InventoryController.cs" />
     <Compile Include="Assets\100_Script\80_Define\InterfaceDefine.cs" />
     <Compile Include="Assets\100_Script\30_Manager\DataManager.Temp.cs" />
     <Compile Include="Assets\100_Script\80_Define\ClassDefine.cs" />
