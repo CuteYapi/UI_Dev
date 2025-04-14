@@ -4,9 +4,13 @@ using UnityEngine;
 
 public partial class DataManager : MonoBehaviour
 {
-    public List<StudentInfo> AllCharacterInfoList = new List<StudentInfo>();
+    public int Gold;
 
-    public List<StudentInfo> OwnStudentInfoList = new List<StudentInfo>();
+    public int Gem;
+
+    public List<StudentCharacter> AllCharacterInfoList = new List<StudentCharacter>();
+
+    public List<StudentCharacter> OwnStudentInfoList = new List<StudentCharacter>();
 
     public void Initialize()
     {
@@ -15,6 +19,19 @@ public partial class DataManager : MonoBehaviour
 
     private void SetStudentData()
     {
+        StudentCharacter tempStudent = new StudentCharacter();
+        tempStudent.Id = 0;
+        tempStudent.Name = "Aris";
+        tempStudent.Level = 1;
+        tempStudent.Exp = 0;
+
+        tempStudent.SetAbility(EnumDefine.AbilityType.MaxHP, EnumDefine.AbilityReason.Level, 10);
+        tempStudent.SetAbility(EnumDefine.AbilityType.AttackPower, EnumDefine.AbilityReason.Level, 10);
+        tempStudent.SetAbility(EnumDefine.AbilityType.Defense, EnumDefine.AbilityReason.Level, 10);
+        tempStudent.SetAbility(EnumDefine.AbilityType.HealAmount, EnumDefine.AbilityReason.Level, 10);
+
+        TempStudentDataList.Add(tempStudent);
+
         foreach (var StudentData in TempStudentDataList)
         {
             AllCharacterInfoList.Add(StudentData);
