@@ -6,9 +6,11 @@ public class InventoryConsumeController : MonoBehaviour, IUI
     public ButtonController[] ButtonControllerArray = new ButtonController[2];
     public TextView[] TextViewArray = new TextView[3];
 
+    public ConsumeItemButtonController RefConsumeItemButton;
+    public Transform InventoryListTransform;
+
     public void Initialize()
     {
-
         foreach (var button in ButtonControllerArray)
         {
             button.Initialize();
@@ -23,6 +25,8 @@ public class InventoryConsumeController : MonoBehaviour, IUI
             Log.Message("열기 버튼 출력", LogCategory.InventoryConsume);
         });
 
+        SetInventoryListButton();
+
         Open();
     }
 
@@ -30,7 +34,8 @@ public class InventoryConsumeController : MonoBehaviour, IUI
     {
         gameObject.SetActive(true);
 
-        SetItemConsumeText();
+        ConsumeInfo targetItem = Manager.Data.ConsumeItemList[0];
+        SetItemConsumeText(targetItem);
     }
 
     public void Close()
@@ -38,14 +43,34 @@ public class InventoryConsumeController : MonoBehaviour, IUI
         gameObject.SetActive(false);
     }
 
-    public void SetItemConsumeText()
+    public void SetItemConsumeText(ConsumeInfo targetItem)
     {
-        ConsumeInfo tempTargetItem = Manager.Data.ConsumeItemList[0];
+        TextViewArray[0].SetText(targetItem.Name);
+        TextViewArray[1].SetText(targetItem.Description);
 
-        TextViewArray[0].SetText(tempTargetItem.Name);
-        TextViewArray[1].SetText(tempTargetItem.Description);
-
-        string countText = $"보유 수량\nx{tempTargetItem.Count}";
+        string countText = $"보유 수량\nx{targetItem.Count}";
         TextViewArray[2].SetText(countText);
+    }
+
+    private void SetInventoryListButton()
+    {
+        foreach(ConsumeInfo consumeInfo in Manager.Data.ConsumeItemList)
+        {
+            ConsumeInfo localConsumeInfo = consumeInfo;
+
+            ConsumeItemButtonController consumeItemButton = Instantiate(RefConsumeItemButton, InventoryListTransform);
+            consumeItemButton.Initialize();
+            consumeItemButton.gameObject.SetActive(true);
+            consumeItemButton.CountText.text = $"x{localConsumeInfo.Count}";
+            consumeItemButton.SetButtonAction(() =>
+            {
+                SetSelectConsumeItem(localConsumeInfo);
+            });
+        }
+    }
+
+    private void SetSelectConsumeItem(ConsumeInfo consumeInfo)
+    {
+        SetItemConsumeText(consumeInfo);
     }
 }

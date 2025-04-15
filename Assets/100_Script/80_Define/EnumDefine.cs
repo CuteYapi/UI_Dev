@@ -129,4 +129,18 @@ namespace EnumDefine
 
         Max,
     }
+
+    public enum PcAnimationStatus
+    {
+        None = -1,
+
+        Idle = 0,
+        Run = 1,
+
+        Jump0 = 100,
+        Jump1 = 101,
+        Jump2 = 102,
+        Jump3 = 103,
+        JumpEnd = 104,
+    }
 }

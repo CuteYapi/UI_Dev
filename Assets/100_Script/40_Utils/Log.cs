@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Log
 {
-    //Log.Message("·Î±×");
-
     public static void Message(string message, LogCategory logCategory)
     {
         if(Manager.Log.IsLogOn == false)
@@ -19,6 +17,16 @@ public class Log
         }
 
         Debug.Log(message);
+    }
+
+    public static void Error(string message)
+    {
+        Debug.LogError(message);
+    }
+
+    public static void Warning()
+    {
+
     }
 }
 

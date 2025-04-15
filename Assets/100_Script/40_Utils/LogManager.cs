@@ -5,13 +5,15 @@ public enum LogCategory
 {
     None = -1,
 
-    CharacterEquip,
+    CharacterEquip = 0,
     CharacterSkill,
     CharacterStar,
     CharacterStatus,
 
+    InventoryStart,
     InventoryConsume,
     InventoryEquip,
+    InventoryEnd,
 
     Max,
 }
